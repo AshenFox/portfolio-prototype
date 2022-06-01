@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <section className='section'>
+    <section className='section home'>
       <h1>Home</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque reiciendis id
