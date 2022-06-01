@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDir } from './hooks';
 
 export default function About() {
+  const { dir } = useDir();
+
   return (
-    <section className='section about'>
+    <section className={`section about ${dir}`}>
       <h1>About</h1>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur maxime

@@ -1,7 +1,7 @@
 import 'normalize.css';
 import './styles/index.scss';
 import { NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import Home from './pages/Home';
 import About from './pages/About';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -24,18 +24,23 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { pathname } = location;
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
   const click = async () => {
     const result = await TestPage.preload();
-    navigate('/testpage');
-
-    console.log(result);
+    navigate('/testpage', { state: { from: pathname } });
   };
 
   return (
     <>
       <header className='navbar'>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/about'>About</NavLink>
+        <NavLink to='/' state={{ from: pathname }}>
+          Home
+        </NavLink>
+        <NavLink to='/about' state={{ from: pathname }}>
+          About
+        </NavLink>
         <button onClick={click}>Test Page</button>
       </header>
       <div className='section-slider'>

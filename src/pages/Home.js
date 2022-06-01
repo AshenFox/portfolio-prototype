@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDir } from './hooks';
 
 export default function Home() {
+  const { dir } = useDir();
+
   return (
-    <section className='section home'>
+    <section className={`section home ${dir}`}>
       <h1>Home</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque reiciendis id
